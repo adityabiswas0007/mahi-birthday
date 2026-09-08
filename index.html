@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#09090b">
+<meta name="theme-color" content="#08080a">
 <meta name="robots" content="noindex,nofollow">
 <title>For Mahi ♡</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,109 +12,108 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<canvas id="stars"></canvas>
 <div class="grain"></div>
-<div class="progress"><span id="pageProgress"></span></div>
+<div class="progress"><span id="progressBar"></span></div>
 
 <audio id="bgMusic" loop preload="auto">
-  <source src="assets/double-take.mp3" type="audio/mpeg">
+  <source src="https://drive.google.com/uc?export=download&id=1d9Np972gKW1rp1kIlXRTFqk5qVfmmcQT" type="audio/mpeg">
 </audio>
 
 <div class="gate" id="gate">
-  <div class="gate-inner">
-    <div class="kicker">09 · 09 · 2026</div>
+  <div class="gate-card">
+    <div class="eyebrow">09 · 09 · 2026</div>
     <h1>This one is for<br><em>Mahi.</em></h1>
     <p>I made you something. Don’t laugh yet.</p>
-    <button class="pill" id="openBtn">open it</button>
+    <button id="openBtn">open it</button>
   </div>
 </div>
 
-<button class="music" id="musicBtn" aria-label="Play or pause music">
-  <span class="dot"></span><span>♫</span><small id="musicTime">Double Take</small>
+<button class="music-control" id="musicBtn" aria-label="Play or pause music">
+  <span class="music-dot"></span>
+  <span class="music-icon">♫</span>
+  <span class="music-copy" id="musicCopy">Double Take</span>
 </button>
 
 <main>
-<section class="hero scene">
-  <div class="hero-media"><img src="assets/images/08.jpg" alt="Mahi"></div>
-  <div class="hero-copy">
-    <div class="kicker reveal">HAPPY BIRTHDAY, BACCHA</div>
-    <div class="display reveal">19 now.<br><em>That’s actually crazy.</em></div>
-    <p class="lead reveal">A normal birthday text felt boring, so I made this instead.</p>
-  </div>
-</section>
-
-<section class="scene">
-  <div class="two-col">
-    <div>
-      <div class="kicker reveal">OKAY, FIRST THINGS FIRST</div>
-      <h2 class="title reveal">You are very pretty.</h2>
-      <p class="body reveal">Had to say it. I’m not turning this into some giant poetic paragraph. I just really like these pictures of you, so obviously they’re going in here.</p>
-      <p class="body reveal">And yes, <strong>Baccha</strong> still suits you a little too well.</p>
+  <section class="hero">
+    <div class="hero-photo"><img data-drive-id="1HBY0U_lH6QYfXaPncGfOX1PYjMfoalMC" alt="Mahi"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-copy reveal">
+      <div class="eyebrow">HAPPY BIRTHDAY, BACCHA</div>
+      <h2>19 now.<br><em>That’s actually crazy.</em></h2>
+      <p>A normal birthday text felt boring, so I made this instead.</p>
     </div>
-    <div class="photo-stack reveal">
-      <figure class="photo-card a"><img src="assets/images/02.jpg" alt="Mahi"></figure>
-      <figure class="photo-card b"><img src="assets/images/03.jpg" alt="Mahi"></figure>
-      <figure class="photo-card c"><img src="assets/images/04.jpg" alt="Mahi"></figure>
+  </section>
+
+  <section class="section intro">
+    <div class="copy reveal">
+      <div class="eyebrow">OKAY, FIRST THINGS FIRST</div>
+      <h2>You are very pretty.</h2>
+      <p>Had to say it. I’m not turning this into some giant poetic paragraph. I just really like these pictures of you, so obviously they’re going in here.</p>
+      <p>And yes, <strong>Baccha</strong> still suits you a little too well.</p>
     </div>
-  </div>
-</section>
-
-<section class="identity scene">
-  <div class="identity-inner">
-    <div class="kicker reveal">THE EVOLUTION</div>
-    <div class="display reveal">Mahi <span class="arrow">→</span><br>My female version <span class="arrow">→</span><br>Baccha.</div>
-    <p class="reveal">Somehow all three make complete sense to me.</p>
-  </div>
-</section>
-
-<section class="personal scene">
-  <div class="personal-card">
-    <div class="kicker reveal">MY FAVOURITE PART</div>
-    <h2 class="title reveal">Talking to you.</h2>
-    <p class="reveal">I like hearing about your day. The good parts, the annoying parts, even the random things you think aren’t worth telling me.</p>
-    <p class="reveal">It doesn’t have to be some deep or special conversation. I just like talking to you.</p>
-  </div>
-</section>
-
-<section class="scene">
-  <div class="gallery">
-    <div class="gallery-head">
-      <div class="kicker reveal">PHOTO DUMP TIME</div>
-      <h2 class="title reveal">You sent good pictures. Obviously I’m using them.</h2>
+    <div class="stack reveal">
+      <figure class="card c1"><img data-drive-id="125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></figure>
+      <figure class="card c2"><img data-drive-id="1hFmU0a_VCJcruA7tooJ_PAPVO5Lg42Wh" alt="Mahi"></figure>
+      <figure class="card c3"><img data-drive-id="1yXZFWujXwR7Z3yu81d5zFE6cL2s5Nn7t" alt="Mahi"></figure>
     </div>
-    <div class="gallery-grid">
-      <figure class="shot reveal"><img src="assets/images/01.jpg" alt="Mahi"><figcaption>you, being you.</figcaption></figure>
-      <figure class="shot reveal"><img src="assets/images/05.jpg" alt="Mahi"><figcaption>pretty.</figcaption></figure>
-      <figure class="shot reveal"><img src="assets/images/06.jpg" alt="Mahi"><figcaption>baccha.</figcaption></figure>
-      <figure class="shot reveal"><img src="assets/images/07.jpg" alt="Mahi"><figcaption>okay this one is cute.</figcaption></figure>
-      <figure class="shot wide reveal"><img src="assets/images/09.jpg" alt="Mahi"><figcaption>and yes, this is staying here.</figcaption></figure>
+  </section>
+
+  <section class="identity section">
+    <div class="identity-inner reveal">
+      <div class="eyebrow">THE EVOLUTION</div>
+      <h2>Mahi <span>→</span><br>My female version <span>→</span><br>Baccha.</h2>
+      <p>Somehow all three make complete sense to me.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="birthday scene">
-  <div class="birthday-inner">
-    <div class="kicker reveal">09 · 09 · 2007 → 09 · 09 · 2026</div>
-    <div class="age reveal">19</div>
-    <h2 class="title reveal">19 now, Baccha.</h2>
-    <p class="body reveal">No long speech. I just hope you have a really, really good year.</p>
-    <div class="wish reveal">May God bless you with all the things you love.</div>
-    <p class="body reveal">Good days, good food, pretty pictures, lots of laughs, and everything you keep wishing for.</p>
-    <button class="pill last-btn reveal" id="lastBtn">one last thing</button>
-  </div>
-</section>
+  <section class="personal section">
+    <div class="personal-card reveal">
+      <div class="eyebrow">MY FAVOURITE PART</div>
+      <h2>Talking to you.</h2>
+      <p>I like hearing about your day. The good parts, the annoying parts, even the random things you think aren’t worth telling me.</p>
+      <p>It doesn’t have to be some deep or special conversation. I just like talking to you.</p>
+    </div>
+  </section>
 
-<section class="ending scene" id="ending">
-  <div class="ending-photo reveal"><img src="assets/images/02.jpg" alt="Mahi"></div>
-  <div class="ending-copy">
-    <div class="kicker reveal">OKAY, LAST PAGE</div>
-    <h2 class="title reveal">Happy Birthday,<br>pretty girl.</h2>
-    <p class="reveal">I hope you have the nicest day, Baccha.</p>
-    <p class="reveal">And I hope this made you smile at least a little.</p>
-    <div class="song-tag reveal">♫ Double Take — dhruv</div>
-  </div>
-</section>
+  <section class="section gallery-section">
+    <div class="gallery-head reveal">
+      <div class="eyebrow">PHOTO DUMP TIME</div>
+      <h2>You sent good pictures. Obviously I’m using them.</h2>
+    </div>
+    <div class="gallery">
+      <figure class="shot reveal"><img data-drive-id="196iCeP-w-SjcHkcDYGVGFtDIGqxeRhdb" alt="Mahi"><figcaption>you, being you.</figcaption></figure>
+      <figure class="shot reveal"><img data-drive-id="16hnGDaPKrlKMthQGFMynfOM-ncYN_jjm" alt="Mahi"><figcaption>pretty.</figcaption></figure>
+      <figure class="shot reveal"><img data-drive-id="1FKE5S-xqRCl43WCkLUPliiUQVTVPfDCJ" alt="Mahi"><figcaption>baccha.</figcaption></figure>
+      <figure class="shot reveal"><img data-drive-id="13b6gfFEX-pzRZ7d7oF7GjB9j2SPI76k6" alt="Mahi"><figcaption>okay this one is cute.</figcaption></figure>
+      <figure class="shot featured reveal"><img data-drive-id="1lGHQuz5u5DWivk92mOMatxSDZ5izjkX-" alt="Mahi"><figcaption>and yes, this is staying here.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="birthday section">
+    <div class="birthday-inner reveal">
+      <div class="eyebrow">09 · 09 · 2007 → 09 · 09 · 2026</div>
+      <div class="age">19</div>
+      <h2>19 now, Baccha.</h2>
+      <p>No long speech. I just hope you have a really, really good year.</p>
+      <div class="wish">May God bless you with all the things you love.</div>
+      <p>Good days, good food, pretty pictures, lots of laughs, and everything you keep wishing for.</p>
+      <button id="lastBtn">one last thing</button>
+    </div>
+  </section>
+
+  <section class="ending section" id="ending">
+    <div class="ending-photo reveal"><img data-drive-id="125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></div>
+    <div class="ending-copy reveal">
+      <div class="eyebrow">OKAY, LAST PAGE</div>
+      <h2>Happy Birthday,<br>pretty girl.</h2>
+      <p>I hope you have the nicest day, Baccha.</p>
+      <p>And I hope this made you smile at least a little.</p>
+      <div class="song-tag">♫ Double Take — dhruv</div>
+    </div>
+  </section>
 </main>
+
 <script src="script.js"></script>
 </body>
 </html>
