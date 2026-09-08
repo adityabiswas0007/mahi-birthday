@@ -1,119 +1,308 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08080a">
-<meta name="robots" content="noindex,nofollow">
-<title>For Mahi ♡</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gloock&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#09090b" />
+  <title>For Mahi ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --bg:#09090b; --paper:#fffaf5; --muted:#c8bfb8; --gold:#e7c46b; --pink:#f3acc0; --line:rgba(255,255,255,.12);
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--paper);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    .progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:50;background:transparent}
+    .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--pink))}
+    .stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0 1px, transparent 1px) 0 0/120px 120px,
+      radial-gradient(circle at 70% 65%, rgba(255,255,255,.06) 0 1px, transparent 1px) 0 0/170px 170px,
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,.07) 0 1px, transparent 1px) 0 0/140px 140px;
+      opacity:.8;
+    }
+    .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#09090b;transition:.55s ease}
+    .gate.hide{opacity:0;visibility:hidden}
+    .gate-inner{text-align:center;padding:24px;max-width:560px}
+    .kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+    h1,h2,.display,.age{font-family:"Cormorant Garamond",serif;font-weight:600;letter-spacing:-.03em}
+    h1{font-size:clamp(52px,14vw,96px);line-height:.9;margin:18px 0}
+    .gate p{color:var(--muted);margin:0 0 14px}
+    .pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--paper);border-radius:999px;padding:14px 26px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+    .music{position:fixed;right:14px;top:max(14px,env(safe-area-inset-top));z-index:60;border:1px solid var(--line);border-radius:999px;background:rgba(9,9,11,.68);backdrop-filter:blur(12px);color:var(--paper);padding:12px 14px;display:flex;gap:8px;align-items:center;cursor:pointer}
+    .music.playing .dot{animation:pulse .9s ease-in-out infinite alternate}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--pink)}
+    .music small{font-size:10px;letter-spacing:.08em}
+    @keyframes pulse{to{transform:scale(1.4);box-shadow:0 0 14px var(--pink)}}
+    main{position:relative}
+    .section{padding:10vh 20px}
+    .container{width:min(1100px,100%);margin:0 auto}
+    .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:0;overflow:hidden}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(9,9,11,.96) 0%, rgba(9,9,11,.4) 42%, rgba(9,9,11,.08) 70%, rgba(9,9,11,.04) 100%)}
+    .hero-copy{position:relative;z-index:2;padding:0 22px 9vh;max-width:900px}
+    .display{font-size:clamp(56px,12vw,118px);line-height:.88;margin:14px 0 22px}
+    .display em{font-style:normal;color:var(--pink)}
+    .lead,.body{max-width:680px;color:var(--muted);font-size:clamp(16px,2vw,19px);line-height:1.85}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .title{font-size:clamp(50px,8vw,92px);line-height:.95;margin:10px 0 18px}
+    .stack{position:relative;height:560px}
+    .polaroid{position:absolute;background:#f6f0ea;padding:10px;box-shadow:0 28px 70px rgba(0,0,0,.34);overflow:hidden}
+    .polaroid img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .polaroid.a{left:0;top:12%;width:58%;height:68%;transform:rotate(-6deg)}
+    .polaroid.b{right:0;top:0;width:62%;height:70%;transform:rotate(5deg)}
+    .polaroid.c{left:23%;bottom:0;width:58%;height:64%;transform:rotate(-1deg)}
+    .identity{text-align:center}
+    .identity .display{font-size:clamp(42px,9vw,88px);line-height:1.02;word-break:break-word;overflow-wrap:anywhere}
+    .card{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:34px 24px}
+    .personal p{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,4vw,40px);line-height:1.45;color:#e5ddd7;margin:16px 0}
+    .gallery-head{margin-bottom:28px}
+    .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .shot{border:1px solid var(--line);background:#111015;padding:10px}
+    .shot .frame{aspect-ratio:4/5;overflow:hidden;background:#0b0a0c}
+    .shot img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+    .shot.wide .frame{aspect-ratio:4/5}
+    .shot.crop-mid img{object-position:center 48%}
+    .shot.crop-low img{object-position:center 35%}
+    .cap{padding:10px 2px 0;color:#8f8781;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .birthday{text-align:center}
+    .birthday-inner{border-block:1px solid var(--line);padding:58px 0}
+    .age{font-size:clamp(130px,30vw,260px);line-height:.74;color:transparent;background:linear-gradient(#fffaf5,rgba(255,250,245,.14));-webkit-background-clip:text;background-clip:text}
+    .wish{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:clamp(30px,5vw,48px);line-height:1.35;max-width:760px;margin:20px auto 18px}
+    .ending{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center}
+    .ending-photo{border:1px solid var(--line);padding:10px;background:#111015}
+    .ending-photo .frame{aspect-ratio:4/5;overflow:hidden;background:#0b0a0c}
+    .ending-photo img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+    .song-tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:12px 16px;margin-top:10px;font-size:11px;letter-spacing:.08em;color:var(--paper)}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+    #ytWrap{position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+    @media (max-width:820px){
+      .two-col,.ending,.gallery-grid{grid-template-columns:1fr}
+      .hero-copy{padding-bottom:8vh}
+      .stack{height:470px}
+      .polaroid.a{width:60%;height:66%}
+      .polaroid.b{width:62%;height:69%}
+      .polaroid.c{width:58%;height:60%}
+      .section{padding:9vh 20px}
+    }
+    @media (max-width:480px){
+      .music small{display:none}
+      .title{font-size:58px}
+      .display{font-size:56px}
+      .identity .display{font-size:clamp(34px,11vw,54px);line-height:1.08}
+      .stack{height:410px}
+      .card{padding:28px 20px}
+      .personal p{font-size:25px}
+    }
+  </style>
 </head>
 <body>
-<div class="grain"></div>
-<div class="progress"><span id="progressBar"></span></div>
+  <div class="stars"></div>
+  <div class="progress"><span id="progressBar"></span></div>
 
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://drive.google.com/uc?export=download&id=1d9Np972gKW1rp1kIlXRTFqk5qVfmmcQT" type="audio/mpeg">
-</audio>
-
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="eyebrow">09 · 09 · 2026</div>
-    <h1>This one is for<br><em>Mahi.</em></h1>
-    <p>I made you something. Don’t laugh yet.</p>
-    <button id="openBtn">open it</button>
+  <div class="gate" id="gate">
+    <div class="gate-inner">
+      <div class="kicker">09 · 09 · 2026</div>
+      <h1>This one is for<br><em>Mahi.</em></h1>
+      <p>I made you something. Don’t laugh yet.</p>
+      <button class="pill" id="openBtn">open it</button>
+    </div>
   </div>
-</div>
 
-<button class="music-control" id="musicBtn" aria-label="Play or pause music">
-  <span class="music-dot"></span>
-  <span class="music-icon">♫</span>
-  <span class="music-copy" id="musicCopy">Double Take</span>
-</button>
+  <button class="music" id="musicBtn" aria-label="Play or pause music">
+    <span class="dot"></span><span>♫</span><small id="musicLabel">Double Take</small>
+  </button>
 
-<main>
-  <section class="hero">
-    <div class="hero-photo"><img data-drive-id="1HBY0U_lH6QYfXaPncGfOX1PYjMfoalMC" alt="Mahi"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-copy reveal">
-      <div class="eyebrow">HAPPY BIRTHDAY, BACCHA</div>
-      <h2>19 now.<br><em>That’s actually crazy.</em></h2>
-      <p>A normal birthday text felt boring, so I made this instead.</p>
-    </div>
-  </section>
+  <div id="ytWrap"><div id="ytPlayer"></div></div>
 
-  <section class="section intro">
-    <div class="copy reveal">
-      <div class="eyebrow">OKAY, FIRST THINGS FIRST</div>
-      <h2>You are very pretty.</h2>
-      <p>Had to say it. I’m not turning this into some giant poetic paragraph. I just really like these pictures of you, so obviously they’re going in here.</p>
-      <p>And yes, <strong>Baccha</strong> still suits you a little too well.</p>
-    </div>
-    <div class="stack reveal">
-      <figure class="card c1"><img data-drive-id="125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></figure>
-      <figure class="card c2"><img data-drive-id="1hFmU0a_VCJcruA7tooJ_PAPVO5Lg42Wh" alt="Mahi"></figure>
-      <figure class="card c3"><img data-drive-id="1yXZFWujXwR7Z3yu81d5zFE6cL2s5Nn7t" alt="Mahi"></figure>
-    </div>
-  </section>
+  <main>
+    <section class="hero">
+      <img src="https://drive.google.com/uc?export=view&id=1HBY0U_lH6QYfXaPncGfOX1PYjMfoalMC" alt="Mahi" />
+      <div class="hero-copy">
+        <div class="kicker reveal">Happy Birthday, Baccha</div>
+        <div class="display reveal">19 now.<br><em>That’s actually crazy.</em></div>
+        <p class="lead reveal">A normal birthday text felt boring, so I made this instead.</p>
+      </div>
+    </section>
 
-  <section class="identity section">
-    <div class="identity-inner reveal">
-      <div class="eyebrow">THE EVOLUTION</div>
-      <h2>Mahi <span>→</span><br>My female version <span>→</span><br>Baccha.</h2>
-      <p>Somehow all three make complete sense to me.</p>
-    </div>
-  </section>
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <div class="kicker reveal">Okay, first things first</div>
+          <h2 class="title reveal">You are very pretty.</h2>
+          <p class="body reveal">Had to say it. I’m not turning this into some giant poetic paragraph. I just really like these pictures of you, so obviously they’re going in here.</p>
+          <p class="body reveal">And yes, <strong>Baccha</strong> still suits you a little too well.</p>
+        </div>
+        <div class="stack reveal">
+          <div class="polaroid a"><img src="https://drive.google.com/uc?export=view&id=125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></div>
+          <div class="polaroid b"><img src="https://drive.google.com/uc?export=view&id=1hFmU0a_VCJcruA7tooJ_PAPVO5Lg42Wh" alt="Mahi"></div>
+          <div class="polaroid c"><img src="https://drive.google.com/uc?export=view&id=1yXZFWujXwR7Z3yu81d5zFE6cL2s5Nn7t" alt="Mahi"></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="personal section">
-    <div class="personal-card reveal">
-      <div class="eyebrow">MY FAVOURITE PART</div>
-      <h2>Talking to you.</h2>
-      <p>I like hearing about your day. The good parts, the annoying parts, even the random things you think aren’t worth telling me.</p>
-      <p>It doesn’t have to be some deep or special conversation. I just like talking to you.</p>
-    </div>
-  </section>
+    <section class="section identity">
+      <div class="container">
+        <div class="kicker reveal">The evolution</div>
+        <div class="display reveal">Mahi →<br>My female version →<br>Baccha.</div>
+        <p class="body reveal" style="margin-inline:auto">Somehow all three make complete sense to me.</p>
+      </div>
+    </section>
 
-  <section class="section gallery-section">
-    <div class="gallery-head reveal">
-      <div class="eyebrow">PHOTO DUMP TIME</div>
-      <h2>You sent good pictures. Obviously I’m using them.</h2>
-    </div>
-    <div class="gallery">
-      <figure class="shot reveal"><img data-drive-id="196iCeP-w-SjcHkcDYGVGFtDIGqxeRhdb" alt="Mahi"><figcaption>you, being you.</figcaption></figure>
-      <figure class="shot reveal"><img data-drive-id="16hnGDaPKrlKMthQGFMynfOM-ncYN_jjm" alt="Mahi"><figcaption>pretty.</figcaption></figure>
-      <figure class="shot reveal"><img data-drive-id="1FKE5S-xqRCl43WCkLUPliiUQVTVPfDCJ" alt="Mahi"><figcaption>baccha.</figcaption></figure>
-      <figure class="shot reveal"><img data-drive-id="13b6gfFEX-pzRZ7d7oF7GjB9j2SPI76k6" alt="Mahi"><figcaption>okay this one is cute.</figcaption></figure>
-      <figure class="shot featured reveal"><img data-drive-id="1lGHQuz5u5DWivk92mOMatxSDZ5izjkX-" alt="Mahi"><figcaption>and yes, this is staying here.</figcaption></figure>
-    </div>
-  </section>
+    <section class="section personal">
+      <div class="container card">
+        <div class="kicker reveal">My favourite part</div>
+        <h2 class="title reveal">Talking to you.</h2>
+        <p class="reveal">I like hearing about your day. The good parts, the annoying parts, even the random things you think aren’t worth telling me.</p>
+        <p class="reveal">It doesn’t have to be some deep or special conversation. I just like talking to you.</p>
+      </div>
+    </section>
 
-  <section class="birthday section">
-    <div class="birthday-inner reveal">
-      <div class="eyebrow">09 · 09 · 2007 → 09 · 09 · 2026</div>
-      <div class="age">19</div>
-      <h2>19 now, Baccha.</h2>
-      <p>No long speech. I just hope you have a really, really good year.</p>
-      <div class="wish">May God bless you with all the things you love.</div>
-      <p>Good days, good food, pretty pictures, lots of laughs, and everything you keep wishing for.</p>
-      <button id="lastBtn">one last thing</button>
-    </div>
-  </section>
+    <section class="section">
+      <div class="container">
+        <div class="gallery-head">
+          <div class="kicker reveal">Photo dump time</div>
+          <h2 class="title reveal">You sent good pictures. Obviously I’m using them.</h2>
+        </div>
+        <div class="gallery-grid">
+          <figure class="shot reveal crop-mid">
+            <div class="frame"><img src="https://drive.google.com/uc?export=view&id=196iCeP-w-SjcHkcDYGVGFtDIGqxeRhdb" alt="Mahi"></div>
+            <figcaption class="cap">you, being you.</figcaption>
+          </figure>
+          <figure class="shot reveal crop-low">
+            <div class="frame"><img src="https://drive.google.com/uc?export=view&id=16hnGDaPKrlKMthQGFMynfOM-ncYN_jjm" alt="Mahi"></div>
+            <figcaption class="cap">pretty.</figcaption>
+          </figure>
+          <figure class="shot reveal crop-mid">
+            <div class="frame"><img src="https://drive.google.com/uc?export=view&id=1FKE5S-xqRCl43WCkLUPliiUQVTVPfDCJ" alt="Mahi"></div>
+            <figcaption class="cap">baccha.</figcaption>
+          </figure>
+          <figure class="shot reveal crop-mid">
+            <div class="frame"><img src="https://drive.google.com/uc?export=view&id=13b6gfFEX-pzRZ7d7oF7GjB9j2SPI76k6" alt="Mahi"></div>
+            <figcaption class="cap">okay this one is cute.</figcaption>
+          </figure>
+          <figure class="shot reveal wide crop-low" style="grid-column:1/-1">
+            <div class="frame"><img src="https://drive.google.com/uc?export=view&id=1lGHQuz5u5DWivk92mOMatxSDZ5izjkX-" alt="Mahi"></div>
+            <figcaption class="cap">and yes, this is staying here.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 
-  <section class="ending section" id="ending">
-    <div class="ending-photo reveal"><img data-drive-id="125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></div>
-    <div class="ending-copy reveal">
-      <div class="eyebrow">OKAY, LAST PAGE</div>
-      <h2>Happy Birthday,<br>pretty girl.</h2>
-      <p>I hope you have the nicest day, Baccha.</p>
-      <p>And I hope this made you smile at least a little.</p>
-      <div class="song-tag">♫ Double Take — dhruv</div>
-    </div>
-  </section>
-</main>
+    <section class="section birthday">
+      <div class="container birthday-inner">
+        <div class="kicker reveal">09 · 09 · 2007 → 09 · 09 · 2026</div>
+        <div class="age reveal">19</div>
+        <h2 class="title reveal">19 now, Baccha.</h2>
+        <p class="body reveal" style="margin-inline:auto">No long speech. I just hope you have a really, really good year.</p>
+        <div class="wish reveal">May God bless you with all the things you love.</div>
+        <p class="body reveal" style="margin-inline:auto">Good days, good food, pretty pictures, lots of laughs, and everything you keep wishing for.</p>
+        <button class="pill reveal" id="lastBtn">one last thing</button>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <section class="section">
+      <div class="container ending" id="ending">
+        <div class="ending-photo reveal">
+          <div class="frame"><img src="https://drive.google.com/uc?export=view&id=125JT7IDAQVTbmt4R9WkGwkzXYkCJr-z1" alt="Mahi"></div>
+        </div>
+        <div>
+          <div class="kicker reveal">Okay, last page</div>
+          <h2 class="title reveal">Happy Birthday,<br>pretty girl.</h2>
+          <p class="body reveal">I hope you have the nicest day, Baccha.</p>
+          <p class="body reveal">And I hope this made you smile at least a little.</p>
+          <div class="song-tag reveal">♫ Double Take — dhruv</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    const gate = document.getElementById('gate');
+    const openBtn = document.getElementById('openBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicLabel = document.getElementById('musicLabel');
+    const progressBar = document.getElementById('progressBar');
+    const lastBtn = document.getElementById('lastBtn');
+    const ending = document.getElementById('ending');
+    let player;
+    let isPlaying = false;
+    let ytReady = false;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytPlayer', {
+        width: '1',
+        height: '1',
+        videoId: 'uQiF1yOnzDg',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          rel: 0,
+          loop: 1,
+          playlist: 'uQiF1yOnzDg'
+        },
+        events: {
+          onReady: () => { ytReady = true; musicLabel.textContent = 'Double Take'; },
+          onStateChange: (e) => {
+            isPlaying = e.data === YT.PlayerState.PLAYING;
+            musicBtn.classList.toggle('playing', isPlaying);
+          }
+        }
+      });
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+    async function startMusic() {
+      if (ytReady && player && player.playVideo) {
+        player.playVideo();
+        musicBtn.classList.add('playing');
+      }
+    }
+    function pauseMusic() {
+      if (ytReady && player && player.pauseVideo) {
+        player.pauseVideo();
+        musicBtn.classList.remove('playing');
+      }
+    }
+
+    openBtn.addEventListener('click', () => {
+      gate.classList.add('hide');
+      startMusic();
+    });
+
+    musicBtn.addEventListener('click', () => {
+      if (!ytReady) return;
+      if (isPlaying) pauseMusic(); else startMusic();
+    });
+
+    lastBtn.addEventListener('click', () => {
+      ending.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = ((window.scrollY / max) * 100 || 0) + '%';
+    }, { passive: true });
+  </script>
 </body>
 </html>
