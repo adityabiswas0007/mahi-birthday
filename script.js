@@ -1,0 +1,10 @@
+const $=(s,c=document)=>c.querySelector(s);const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const gate=$("#gate"),music=$("#bgMusic"),musicBtn=$("#musicBtn"),musicTime=$("#musicTime");music.volume=.48;
+$("#openBtn").addEventListener("click",async()=>{gate.classList.add("hide");try{await music.play();musicBtn.classList.add("playing")}catch(e){}});
+musicBtn.addEventListener("click",async()=>{if(music.paused){try{await music.play();musicBtn.classList.add("playing")}catch(e){}}else{music.pause();musicBtn.classList.remove("playing")}});
+function fmt(t){if(!Number.isFinite(t))return"Double Take";const m=Math.floor(t/60),s=Math.floor(t%60).toString().padStart(2,"0");return`${m}:${s} / 2:52`}
+music.addEventListener("timeupdate",()=>musicTime.textContent=fmt(music.currentTime));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});$$('.reveal').forEach(x=>io.observe(x));
+addEventListener("scroll",()=>{const d=document.documentElement,max=d.scrollHeight-innerHeight;$("#pageProgress").style.width=(max?scrollY/max*100:0)+"%"},{passive:true});
+$("#lastBtn").addEventListener("click",()=>$("#ending").scrollIntoView({behavior:"smooth"}));
+const c=$("#stars"),ctx=c.getContext("2d");let pts=[];function resize(){const d=Math.min(devicePixelRatio,2);c.width=innerWidth*d;c.height=innerHeight*d;c.style.width=innerWidth+"px";c.style.height=innerHeight+"px";ctx.setTransform(d,0,0,d,0,0);pts=Array.from({length:Math.min(90,Math.floor(innerWidth/9))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.1+.2,a:Math.random()*.22+.04,v:Math.random()*.045+.012}))}function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);pts.forEach(p=>{p.y-=p.v;if(p.y<-2)p.y=innerHeight+2;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,250,245,${p.a})`;ctx.fill()});requestAnimationFrame(draw)}resize();draw();addEventListener("resize",resize);
